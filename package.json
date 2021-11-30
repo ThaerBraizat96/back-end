@@ -1,0 +1,47 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "nyc mocha dotenv_config_path=tests/.env.test DB_DILECT=sqlite DB_STORGE=:memory ",
+    "start": "nodemon -r esm index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThaerBraizat96/back-end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThaerBraizat96/back-end/issues"
+  },
+  "homepage": "https://github.com/ThaerBraizat96/back-end#readme",
+  "dependencies": {
+    "base-64": "^1.0.0",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mariadb": "^2.5.5",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.12.0-alpha.1",
+    "sinon": "^12.0.1",
+    "sqlite3": "^5.0.2",
+    "tedious": "^14.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.1.1",
+    "mocha": "^8.4.0",
+    "mochawesome": "^7.0.1",
+    "nyc": "^15.1.0",
+    "sequelize-cli": "^6.3.0"
+  }
+}
