@@ -58,6 +58,7 @@ describe("test ", () => {
         .send(user)
         .end((err, response) => {
           response.body.should.be.a("object");
+          response.body.username.should.be.eq("JUST TEST")
           done();
         });
     });
@@ -76,7 +77,7 @@ describe("test ", () => {
           done();
         });
     });
-    // ==========================================signin
+  //   // ==========================================signin
 
     it("It should signin  ", (done) => {
       const user = {
@@ -140,7 +141,10 @@ describe("test ", () => {
       .send(post)
       .end((err, response) => {
         response.body.should.be.a("object");
-        // response.should.have.status(200);
+        response.body.title.should.be.eq("tesst");
+        response.body.body.should.be.eq("qwqwq");
+
+
         done();
       });
   });
@@ -152,7 +156,6 @@ describe("test ", () => {
       .set("Authorization", `Bearer ${token}`)
       .end((err, response) => {
         response.body.should.be.a("array");
-        // should be array
         done();
       });
   });
@@ -164,7 +167,6 @@ describe("test ", () => {
       .set("Authorization", `Bearer ${token}`)
       .end((err, response) => {
         response.body.should.be.a("array");
-        // should be array
         done();
       });
   });
@@ -176,8 +178,6 @@ describe("test ", () => {
       .set("Authorization", `Bearer ${token}`)
       .end((err, response) => {
         response.body.should.be.eq("post deleted !!");
-        // response.body.should.be.eq("post deleted !!")
-        // should be array
         done();
       });
   });
@@ -234,7 +234,6 @@ describe("test ", () => {
       .send(post)
       .end((err, response) => {
         response.body.should.be.eq("Cant add post");
-        // should be array
         done();
       });
   });
@@ -246,8 +245,6 @@ describe("test ", () => {
       .set("Authorization", `Bearer ${token}`)
       .end((err, response) => {
         response.body.should.be.eq("Cant delete");
-        // response.body.should.be.eq("post deleted !!")
-        // should be array
         done();
       });
   });
@@ -263,7 +260,6 @@ describe("test ", () => {
       .send(post)
       .end((err, response) => {
         response.body.should.be.a("object");
-        // response.should.have.status(200);
 
         done();
       });
@@ -326,16 +322,6 @@ describe("test ", () => {
       });
   });
 
-  it("It should get comment by postId ", (done) => {
-    chai
-      .request(app)
-      .get("/comments/1")
-      .set("Authorization", `Bearer ${token}`)
-      .end((err, response) => {
-        response.body.should.be.a("array");
-        done();
-      });
-  });
   it("It should get comment by postId ", (done) => {
     chai
       .request(app)
