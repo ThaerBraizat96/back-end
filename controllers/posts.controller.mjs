@@ -1,27 +1,24 @@
 import { postModel } from "../models/index.mjs";
 
 export const addPost = async (req, res) => {
-  try {
     const note = await postModel.create({
       body: req.body.body,
       title: req.body.title,
       userId: req.user.userId,
     });
-    res.json(note);
-  } catch {
-    res.json("Cant add post");
-  }
+    return note;
 };
+
 
 export const getAllPosts = async (req, res) => {
   const allData = await postModel.findAll();
-  res.json(allData);
+  return allData;
 };
 
 export const getPostsByUserId = async (req, res) => {
   const userId = req.params.userId;
   const notes = await postModel.findAll({ where: { userId: userId } });
-  res.json(notes);
+  return notes
 };
 
 export const updatePost = async (req, res) => {
@@ -39,20 +36,19 @@ export const updatePost = async (req, res) => {
     }
   );
   if(updated[0]> 0){
-  res.json("post updated !!");
+  return ("post updated !!");
   }else{
-    res.json("cant find your post")
+    throw new Error('failed')
   }
  
 };
 
 export const deletePost = async (req, res) => {
   const id = parseInt(req.params.id);
-  const valid = await postModel.findAll({ where: { id: id } });
-  if (valid.length != 0) {
-    await postModel.destroy({ where: { id: id } });
-    res.json("post deleted !!");
-  } else {
-    res.json("Cant delete");
-  }
+  const valid = await postModel.findOne({ where: { id: id } });
+  if(!valid) throw new Error('failed')
+  await postModel.destroy({ where: { id: id } });
+  return "post deleted !!";
+ 
+  
 };

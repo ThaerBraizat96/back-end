@@ -17,12 +17,13 @@ export const signin = async (req, res, next) => {
   if (valid && user) {
     const token=jwt.sign({ userId: user.id, username: req.body.username}, SECRET);
     user.dataValues["token"] = token;
-    res.json({token});
+    return({token});
   } else {
-    res.json("WORNG LOGIN!!!");
+    throw new Error("WORNG LOGIN!!!");
+    // return("WORNG LOGIN!!!");
   }
 }catch{
-  res.json("Wrong!!!!!@!")
+  throw new Error("Wrong!!!!!@!");
 }
 
 };

@@ -1,6 +1,3 @@
-const SECRET = process.env.SECRET || "mysecretkey";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 
 const UserSchema = (sequelizeDB, DataTypes) => {
   const Users = sequelizeDB.define("newUsers", {
